@@ -68,11 +68,30 @@ a {
   <div class="row">
     <div class="col-md-12">
       <h2>最新网址：<a href="http://www.1069419.com">www.1069419.com</a></h2><br>
-      <p class="lead">请记住我们的备用网址：http://www.419im.com</p>
+      <p><input id="timer" type="button" value="5 秒后自动跳转到最新网址" onclick="btnClick();"/></p>
+      <p class="lead">请收藏我们的备用网址：http://www.419im.com</p>
       <p class="lead">随时用QQ/163/126邮箱发邮件至：<a href="mailto:contact@419.im?subject=URL">contact@419.im</a>&nbsp获取最新地址</p>
     </div>
   </div>
 
 </div>
+  
+ <script type="text/javascript" >
+        var time = 5; //时间秒，自己调整!
+        function CountDown() {
+                 if (time >= 0) {
+                     msg = "" + time + " 秒后自动跳转到最新网址";
+                     document.all["timer"].value = msg;
+                 } else{
+                     clearInterval(timer);
+                     window.location.href = "http://www.1069419.com/";
+                 }
+        }
+        timer = setInterval("CountDown()", 1000);
+
+        function btnClick() {
+            window.location.href = "http://www.1069419.com/";
+        }
+    </script>
 </body>
 </html>
