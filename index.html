@@ -87,12 +87,12 @@ a {
 </head>
 
 <body>
- <div class="weixin-tip" style="display:none;">
+<div class="weixin-tip" style="display:none;">
   <p>
     <img src="live_weixin.jpg" alt="微信打开"/>
   </p>
 </div>
-<div class="container text-center" id="info">
+<div class="container text-center" id="info" style="display:none;">
 
   <img src="BDGVCLUB_QRCODE.jpg" border=0 width=100 alt="扫码加微信：BDGVCLUB"><br><br>
   <div class="row">
@@ -140,9 +140,10 @@ a {
 	  $(".container").hide();
       $(".weixin-tip").show();
     }else{
-       timer = setInterval("CountDown()", 1000);
-
-	}
+	 $(".container").show();
+     $(".weixin-tip").hide();
+     timer = setInterval("CountDown()", 1000);
+}
 
        
 })
