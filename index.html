@@ -107,6 +107,22 @@ a {
 </div>
   
  <script type="text/javascript" >
+  function CountDown() {
+                 if (time > 0) {
+                     msg = "" + time + " 秒后自动跳转到最新网址，点击立即跳转";
+                     document.getElementById("timer").value = msg;
+                     --time;
+                 } else{
+                     clearInterval(timer);
+                     document.getElementById("timer").value = "正在跳转，请稍后... ...";
+                     window.location.href = "http://bf.1069419.com/";
+                 }
+        }
+
+        function btnClick() {
+            window.location.href = "http://bf.1069419.com/";
+        }
+
   $(window).on("load",function(){
     var winHeight = $(window).height();
     function is_weixin() {
@@ -128,21 +144,7 @@ a {
 
 	}
 
-        function CountDown() {
-                 if (time > 0) {
-                     msg = "" + time + " 秒后自动跳转到最新网址，点击立即跳转";
-                     document.getElementById("timer").value = msg;
-                     --time;
-                 } else{
-                     clearInterval(timer);
-                     document.getElementById("timer").value = "正在跳转，请稍后... ...";
-                     window.location.href = "http://bf.1069419.com/";
-                 }
-        }
-
-        function btnClick() {
-            window.location.href = "http://bf.1069419.com/";
-        }
+       
 })
 </script>
 </body>
