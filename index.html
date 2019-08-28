@@ -60,10 +60,38 @@ a {
   color: #3282e6;
   text-decoration: none;
 }
+
+  .weixin img{
+    max-width: 100%; 
+    height: auto;
+  }
+  .weixin-tip{
+    display: none; 
+    position: fixed; 
+    left:0; 
+    top:0; 
+    bottom:0; 
+    background: rgba(0,0,0,0.8); 
+    filter:alpha(opacity=80); 
+    height: 100%; 
+    width: 100%; 
+    z-index: 100;
+  }
+  .weixin-tip p{
+    text-align: center; 
+    margin-top: 10%; 
+    padding:0 5%;
+  }
 </style>
+<script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
 </head>
 
 <body>
+ <div class="weixin-tip" style="display:none;">
+  <p>
+    <img src="live_weixin.jpg" alt="微信打开"/>
+  </p>
+</div>
 <div class="container text-center" id="info">
 
   <img src="BDGVCLUB_QRCODE.jpg" border=0 width=100 alt="扫码加微信：BDGVCLUB"><br><br>
@@ -79,7 +107,27 @@ a {
 </div>
   
  <script type="text/javascript" >
-        var time = 5; //时间秒，自己调整!
+  $(window).on("load",function(){
+    var winHeight = $(window).height();
+    function is_weixin() {
+      var ua = navigator.userAgent.toLowerCase();
+      if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    var isWeixin = is_weixin();
+    if(isWeixin){
+      $(".weixin-tip").css("height",winHeight);
+	  $(".container").hide();
+      $(".weixin-tip").show();
+    }else{
+       var time = 5; //时间秒，自己调整!
+       timer = setInterval("CountDown()", 1000);
+
+	}
+
         function CountDown() {
                  if (time > 0) {
                      msg = "" + time + " 秒后自动跳转到最新网址，点击立即跳转";
@@ -91,11 +139,11 @@ a {
                      window.location.href = "http://bf.1069419.com/";
                  }
         }
-        timer = setInterval("CountDown()", 1000);
 
         function btnClick() {
             window.location.href = "http://bf.1069419.com/";
         }
-    </script>
+})
+</script>
 </body>
 </html>
