@@ -107,6 +107,7 @@ a {
 </div>
   
  <script type="text/javascript" >
+  var time = 5; //时间秒，自己调整!
   function CountDown() {
                  if (time > 0) {
                      msg = "" + time + " 秒后自动跳转到最新网址，点击立即跳转";
@@ -139,7 +140,6 @@ a {
 	  $(".container").hide();
       $(".weixin-tip").show();
     }else{
-       var time = 5; //时间秒，自己调整!
        timer = setInterval("CountDown()", 1000);
 
 	}
