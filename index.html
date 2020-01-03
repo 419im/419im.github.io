@@ -84,6 +84,27 @@ a {
   }
 </style>
 <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+<script type="text/javascript" >
+  var time = 5; //时间秒，自己调整!
+  var location_url = "";
+  location_url=getCookie("URL419");
+  if (location_url==null||location_url==""){location_url="http://bf.bt419.com/";}
+
+  function setCookie(name, value) {
+      var Days = 30;
+      var exp = new Date();
+      exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+      document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+  }
+
+  function getCookie(name) {
+      var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+      if (arr = document.cookie.match(reg))
+          return unescape(arr[2]);
+      else
+          return null;
+  }
+</script>
 </head>
 
 <body>
@@ -94,61 +115,71 @@ a {
 </div>
 <div class="container text-center" id="info" style="display:none;">
 
-  <img src="BDGVCLUB_QRCODE.jpg" border=0 width=100 alt="扫码加微信：BDGVCLUB"><br><br>
+  <img src="BDGVCLUB_QRCODE.jpg" border=0 width=150 alt="扫码加微信：BDGVCLUB"><br><br>
   <div class="row">
     <div class="col-md-12">
-      <h2>备用网站：www.419im.com</h2><br>
-      <p><input id="timer" type="button" value="5 秒后自动跳转到最新网址，点击立即跳转" onclick="btnClick();"/></p>
-      <p class="lead">最新网址：<a href="#" onclick="btnClick();">bt419.com</a></p>
-      <p class="lead">随时用QQ/163/126邮箱发邮件至：<a href="mailto:contact@419.im?subject=URL">contact@419.im</a>&nbsp获取最新地址</p>
+      <h2>永久网站：419im.Com</h2>
+      <p><input id="timer" type="button" value="正在选择临时网址，点击立即跳转" onclick="btnClick('');"/></p>
+      <div class="text-center" style="text-desctiption:bold;">
+			<p><i>[临时网址]列表：</i></p>
+			<li type="none">1. <a href="#" onclick="btnClick('http://bf.bt419.com/');">BT419.com</a></li>
+			<li type="none">2. <a href="#" onclick="btnClick('http://bf.419711.com/');">419711.com</a></li>
+			<li type="none">3. <a href="#" onclick="btnClick('http://bf.1069419.com/');">1069419.com</a></li>
+	  </div>	  
+      <p class="lead" style="padding-top:30px;">扫码加客服微信：<b>BDGVCLUB</b><br>或者发邮件至：<a href="mailto:contact@419.im?subject=URL">contact@419.im</a>&nbsp获取最新地址</p>
     </div>
   </div>
 
 </div>
   
- <script type="text/javascript" >
-  var time = 5; //时间秒，自己调整!
+<script type="text/javascript" >
   function CountDown() {
-                 if (time > 0) {
-                     msg = "" + time + " 秒后自动跳转到最新网址，点击立即跳转";
-                     document.getElementById("timer").value = msg;
-                     --time;
-                 } else{
-                     clearInterval(timer);
-                     document.getElementById("timer").value = "正在跳转，请稍后... ...";
-                     window.location.href = "http://bf.bt419.com/";
-                 }
-        }
-
-        function btnClick() {
-            window.location.href = "http://bf.bt419.com/";
-        }
-
-  $(window).on("load",function(){
-    var winHeight = $(window).height();
-    function is_weixin() {
-      var ua = navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == "micromessenger") {
-        return true;
-      } else if(ua.indexOf(' qq')>-1 && ua.indexOf('mqqbrowser') <0){
-         return true;
+      if (time > 0) {
+          msg = "" + time + " 秒后跳转到："+location_url.split("/")[2].toUpperCase() +"，可点击下面 [临时网址] 切换访问";
+          document.getElementById("timer").value = msg;
+          --time;
       } else {
-        return false;
+          clearInterval(timer);
+          document.getElementById("timer").value = "正在跳转，请稍后... ...";
+          window.location.href = location_url;
       }
-    }
-    var isWeixin = is_weixin();
-    if(isWeixin){
-      $(".weixin-tip").css("height",winHeight);
-	  $(".container").hide();
-      $(".weixin-tip").show();
-    }else{
-	 $(".container").show();
-     $(".weixin-tip").hide();
-     timer = setInterval("CountDown()", 1000);
-}
+  }
 
-       
-})
+  function btnClick(redirect_url) {
+	  if (redirect_url!=""){
+		  setCookie("URL419", redirect_url);
+		  alert("下次会自动跳转到："+redirect_url+"\n\n如果跳转失败，请返回重新选择其他临时网址。");
+		  location_url = redirect_url;
+	  }
+      window.location.href = location_url;
+  }
+
+  $(window).on("load", function () {
+      var winHeight = $(window).height();
+
+      function is_weixin() {
+          var ua = navigator.userAgent.toLowerCase();
+          if (ua.match(/MicroMessenger/i) == "micromessenger") {
+              return true;
+          } else if (ua.indexOf(' qq') > -1 && ua.indexOf('mqqbrowser') < 0) {
+              return true;
+          } else {
+              return false;
+          }
+      }
+      var isWeixin = is_weixin();
+      if (isWeixin) {
+          $(".weixin-tip").css("height", winHeight);
+          $(".container").hide();
+          $(".weixin-tip").show();
+      } else {
+          $(".container").show();
+          $(".weixin-tip").hide();
+          timer = setInterval("CountDown()", 1000);
+      }
+
+
+  });
 </script>
 </body>
 </html>
